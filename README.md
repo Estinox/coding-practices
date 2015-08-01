@@ -1,1 +1,1 @@
-# hacker-rank
+# coding practices from various online sites
