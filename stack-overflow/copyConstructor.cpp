@@ -8,6 +8,7 @@ class Base
   int v;
   Base(int val=0);
   Base(const Base &obj);
+  Base operator=(const Base that);
 };
 
 Base::Base(int val)
@@ -22,6 +23,13 @@ Base::Base(const Base &obj)
   cout << "Copy Constructor\n";
 }
 
+Base Base::operator=(Base that)
+{
+  cout << "Assignment\n";
+
+  return that;
+}
+
 Base IncrementBaseValue(Base& b)
 {
   b.v++;
@@ -30,15 +38,10 @@ Base IncrementBaseValue(Base& b)
 
 int main ()
 {
-  Base b(1);
-
-  Base e = IncrementBaseValue(b);
-  b.v = 3;
-
-  cout << b.v << endl;
-  cout << e.v << endl;
+  Base b;
+  Base c;
+  c = b;
 
   return 0;
 }
-
 
