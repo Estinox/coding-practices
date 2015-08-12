@@ -9,6 +9,7 @@ class Base
   Base(int val=0);
   Base(const Base &obj);
   Base operator=(const Base that);
+  Base Increment();
 };
 
 Base::Base(int val)
@@ -30,17 +31,28 @@ Base Base::operator=(Base that)
   return that;
 }
 
+
 Base IncrementBaseValue(Base& b)
 {
   b.v++;
   return b;
 }
 
+Base IncrementBaseValue(Base* b)
+{
+  b->v++;
+  return *b;
+}
+
+Base Base::Increment()
+{
+  v++;
+  return *this;
+}
+
 int main ()
 {
-  Base b;
-  Base c;
-  c = b;
+  Base a[3];
 
   return 0;
 }

@@ -25,7 +25,6 @@ void Mammal::eat()
   cout << "Mammal eat()\n";
 }
 
-
 int main()
 {
   WingedAnimal wa;
