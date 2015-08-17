@@ -24,12 +24,10 @@ $(EXECUTABLE): $(OBJS)
 	$(CC) $(CFLAGS) -o $@ $^
 
 .PHONY: clean
-
 clean:
 	rm -f *.o main
 
 .PHONY: all
-
 all:
 	make clean
 	make
