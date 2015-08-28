@@ -1,17 +1,23 @@
 #ifndef UTIL_HPP
 #define UTIL_HPP
 
-#include <istream>
-#include <fstream>
 #include <string>
+#include <map>
 
-class Log 
+struct Order
 {
-  
+  int orderId;
 
-  public:
+  Order();
+};
+
+class OrderBook
+{
+  //map<int, int> orders[2];
+  Order orders[2];
 };
 
 
 #endif
+
 

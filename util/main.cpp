@@ -9,11 +9,7 @@ int main(int argc, char* argv[])
 {
   cout << "hi\n";
 
-  Node n;
-
-  int a = n.gimmeOne();
-
-  cout << a << endl;
+  OrderBook o;
 
 
   return 0;

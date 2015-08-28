@@ -15,7 +15,7 @@ CPP_HEADERS= \
 						 util.hpp
 
 CPP_SRC=$(CPP_HEADERS:.hpp=.cpp) main.cpp
-OBJS=$(CPP_SRC:.hpp=.o)
+OBJS=$(CPP_SRC:.cpp=.o)
 
 %.o: %.cpp $(CPP_HEADERS)
 	$(CC) -c $< -o $@ $(CFLAGS)
