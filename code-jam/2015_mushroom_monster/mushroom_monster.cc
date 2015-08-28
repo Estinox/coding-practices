@@ -1,3 +1,5 @@
+#define _DEBUG 0
+
 #include <algorithm>
 #include <cstdio>
 #include <cassert>
@@ -18,18 +20,31 @@ int main()
     int l[N];
     scanf("%d", &l[0]);
 
+    int max_rate = 0;
+
     for (int j = 1; j < N; ++j)
     {
       scanf("%d", &l[j]);
       one += std::max(0, l[j-1] - l[j]);
+#if _DEBUG
+      printf("%d ", l[j]);
+#endif
+      max_rate = std::max(l[j-1] - l[j], max_rate);
     }
+#if _DEBUG
+    printf("\n");
+#endif
 
     // Solve for two
-    int max_rate = l[N-2] - l[N-1];
-    //printf("max_rate: %d, %d - %d\n", max_rate, l[N-2], l[N-1]);
+#if _DEBUG
+    printf("max_rate: %d\n", max_rate);
+#endif
+
     for (int n = 0; n < N-1; n++)
     {
-      //printf("two: %d, l[%d] %d\n", two, n, l[n]);
+#if _DEBUG
+      printf("two: %d, l[%d] %d\n", two, n, l[n]);
+#endif
       two += std::min(max_rate, l[n]);
     }
 
