@@ -14,11 +14,13 @@ int main()
 
     int N = 0, one = 0, two = 0;
     int l[N];
-    scanf("%d", &N);
-    for (int j = 0; j < N; j+=2)
+    scanf("%d %d", &N, &l[0]);
+
+    printf("first: %d", l[0]);
+    for (int j = 1; j < N; ++j)
     {
-      scanf("%d %d", &l[j], &l[j+1]);
-      one += l[j] - l[j+1];
+      scanf("%d", &l[j]);
+      one += l[j-1] - l[j];
     }
 
     // Solve for two
