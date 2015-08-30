@@ -43,15 +43,14 @@ int main()
 
 #if _DEBUG
       printf("lower_time %ld, upper_time %ld, cs(lower) %ld, cs(upper) %ld\n"
-          , lower_time
-          , upper_time
-          , customers_served(lower_time, M, B)
-          , customers_served(upper_time, M, B));
+             , lower_time
+             , upper_time
+             , customers_served(lower_time, M, B)
+             , customers_served(upper_time, M, B));
 #endif
     }
 
-
-    int before_me = N - customers_served(upper_time-1, M, B);
+    int before_me = N - customers_served(upper_time - 1, M, B);
 
     for (int j = 0; j < B; ++j)
     {
@@ -63,7 +62,7 @@ int main()
 
       if (before_me == 0)
       {
-        printf("Case #%d: %d\n", i+1, j+1);
+        printf("Case #%d: %d\n", i + 1, j + 1);
         break;
       }
     }
