@@ -8,6 +8,11 @@
 
 using namespace std;
 
+void print_vector(int i)
+{
+  cout << i << " ";
+}
+
 int main()
 {
   int T;
@@ -25,13 +30,14 @@ int main()
     {
       int v;
       cin >> v;
-      sum = v;
+      sum += v;
       P.push_back(v);
       largest_p = max(largest_p, P[d]);
 #if _DEBUG
       cout << v << " ";
 #endif
     }
+    printf("\n");
 
     long largest_split = 0;
     long shortest_minute = sum;
@@ -46,7 +52,7 @@ int main()
       }
 
 #if _DEBUG
-      //printf("split %d: shortest minute %ld, largest split %ld, largest p %d\n", split, shortest_minute, largest_split, largest_p);
+      printf("split %d: shortest minute %ld, largest split %ld, largest p %d\n", split, shortest_minute, largest_split, largest_p);
 #endif
     }
 
@@ -60,6 +66,9 @@ int main()
           P[d] = P[d] - largest_split;
           P.push_back(largest_split);
           special++;
+
+          for_each(P.begin(), P.end(), print_vector);
+          printf("\n");
         }
       }
     }
@@ -68,7 +77,7 @@ int main()
 
 
 #if _DEBUG
-    printf("special %d, moves %d, shortest minute %ld, largest split %ld, largest p %d\n", special, moves,  shortest_minute, largest_split, largest_p);
+    printf("special %d, moves %d, shortest minute %ld, largest split %ld, largest p %d, sum %ld\n", special, moves,  shortest_minute, largest_split, largest_p, sum);
 #endif
 
     printf("Case #%d: %d\n", i+1, special + moves);
