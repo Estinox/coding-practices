@@ -71,3 +71,25 @@ Node* Node::RotateLinkedList(const int n)
 
   return cur;
 }
+
+void ReverseLinkedList(Node** node)
+{
+  Node* prevNode = nullptr;
+  Node* curNode = *node;
+  Node* nextNode = curNode->next;
+
+  while (curNode != nullptr)
+  {
+    nextNode = curNode->next;
+    curNode->next = prevNode;
+    prevNode = curNode;
+    curNode = nextNode;
+  }
+
+  *node = prevNode;
+}
+
+void ReverseLinkedListRecusively(Node** node)
+{
+
+}

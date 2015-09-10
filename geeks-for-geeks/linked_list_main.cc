@@ -9,7 +9,7 @@ int main()
     Push(&head, i);
   }
 
-  head = head->RotateLinkedList(3);
+  ReverseLinkedList(&head);
   head->PrintList();
 
   return 0;

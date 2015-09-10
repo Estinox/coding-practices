@@ -20,4 +20,7 @@ public:
 void Push (Node **head_ref, int new_data);
 Node* MakeLinkedList(int n);
 
+void ReverseLinkedList(Node** node);
+void ReverseLinkedListRecusively(Node** node);
+
 #endif
