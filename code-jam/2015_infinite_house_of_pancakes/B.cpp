@@ -23,7 +23,8 @@ int main()
       for (int j = 0; j < n; j++)
       {
         cur += (stuff[j] - 1) / i;
-        printf("%d: cur %d, stuff[%d] %d\n", i, cur, j, stuff[j]);
+        // cur += ceil(stuff[j]/i)-1;
+        printf("%d: cur %d, stuff[%d] %d, val %d\n", i, cur, j, stuff[j], (stuff[j] - 1)/i);
       }
       answer = min(answer, cur);
 
