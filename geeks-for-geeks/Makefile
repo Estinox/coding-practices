@@ -17,10 +17,10 @@ CPP_SRC=$(CPP_HEADERS:.h=.cc) linked_list_main.cc
 OBJS=$(CPP_SRC:.cc=.o)
 
 %.o: %.cc $(CPP_HEADERS)
-	$(CC) -c $< -o $@ $(CFLAGS)
+	$(CC) -c $< -o $@ $(CFLAGS) -fno-rtti -fno-exceptions
 
 $(EXECUTABLE): $(OBJS)
-	$(CC) $(CFLAGS) -o $@ $^
+	$(CC) $(CFLAGS) -o $@ $^ -fno-rtti -fno-exceptions
 
 .PHONY: clean
 clean:
