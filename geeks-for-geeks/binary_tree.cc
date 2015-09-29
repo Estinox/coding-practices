@@ -59,7 +59,7 @@ void PrintBfs(Node<T>* tree)
 }
 
 template <typename T>
-int LowestCommonAncestor(Node<int>* root, const T& n1, const T& n2)
+int LowestCommonAncestor(Node<T>* root, const T& n1, const T& n2)
 {
   if (root == nullptr)
     return -1;
@@ -72,6 +72,30 @@ int LowestCommonAncestor(Node<int>* root, const T& n1, const T& n2)
     return root->val;
 }
 
+template <typename T>
+void FindKSmallest(Node<T>* root, int k)
+{
+  return FindKSmallestUtil(root, k);
+}
+
+template <typename T>
+void FindKSmallestUtil(Node<T>* root, int& k)
+{
+  if (k == 0 || root == nullptr)
+    return;
+
+  FindKSmallestUtil(root->left, k);
+  --k;
+
+  if (k == 0)
+  {
+    printf("%d", root->val);
+    return;
+  }
+
+  FindKSmallestUtil(root->right, k);
+}
+
 int main()
 {
   Node<int>* root = new Node<int>(20);
@@ -82,5 +106,6 @@ int main()
   root->left->right->left  = new Node<int>(10);
   root->left->right->right = new Node<int>(14);
 
-  printf("%d", LowestCommonAncestor(root, 10, 14));
+  //printf("%d", LowestCommonAncestor(root, 10, 14));
+  FindKSmallest(root, 5);
 }
