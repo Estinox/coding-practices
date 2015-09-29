@@ -1,17 +1,50 @@
 #include "linked_list.h"
 
-Node::Node(int data)
-  : data(data)
-  , next(nullptr)
+
+template <class T>
+void Stack<T>::push (T const& elem)
+{
+  // append copy of passed element
+  elems.push_back(elem);
+}
+
+template <class T>
+void Stack<T>::pop ()
+{
+  if (elems.empty())
+  {
+    throw out_of_range("Stack<>::pop(): empty stack");
+  }
+  // remove last element
+  elems.pop_back();
+}
+
+template <class T>
+T Stack<T>::top () const
+{
+  if (elems.empty())
+  {
+    throw out_of_range("Stack<>::top(): empty stack");
+  }
+  // return copy of last element
+  return elems.back();
+}
+
+/*
+template <typename T>
+Node<T>::Node(T data)
+//  : data(data)
+//  , next(nullptr)
 {}
 
-Node* MakeLinkedList(int n)
+template <typename T>
+Node<T>* MakeLinkedList(int n)
 {
-  Node *head = new Node(n);
+  Node<int> *head = new Node<int>(n);
 
   for (int i = n - 1; i > 0; --i)
   {
-    Node *new_node = new Node(i);
+    Node<int> *new_node = new Node<int>(i);
     new_node->next = head;
     head = new_node;
   }
@@ -19,39 +52,53 @@ Node* MakeLinkedList(int n)
   return head;
 }
 
-/* Function to push a node */
-void Push (Node **head_ref, int new_data)
+// Function to push a node
+template <typename T>
+void Push (Node<T> **head_ref, T new_data)
 {
-  /* allocate node */
-  Node *new_node = new Node(new_data);
+  // allocate node
+  Node<T> *new_node = new Node<T>(new_data);
 
-  /* link the old list off the new node */
+  // link the old list off the new node
   new_node->next = (*head_ref);
 
-  /* move the head to point to the new node */
+  // move the head to point to the new node
   (*head_ref) = new_node;
 }
 
-/* Function to print linked list */
-void Node::PrintList()
+//Function to print linked list
+template <typename T>
+void Node<T>::PrintList()
 {
-  Node *iter = this;
+  Node<T> *iter = this;
 
   do
   {
     printf("%d ", iter->data);
     iter = iter->next;
   }
-  while (iter->next != nullptr);
+  while (iter != nullptr);
+  printf("\n");
 }
 
-Node* Node::RotateLinkedList(const int n)
+template <typename T>
+void PrintListRecursively(Node<T>* node)
+{
+  if (node == nullptr)
+    return;
+
+  printf("%d ", node->data);
+  PrintListRecursively(node->next);
+}
+
+template <typename T>
+Node<T>* Node<T>::RotateLinkedList(const int n)
 {
   if (n == 0)
     return nullptr;
 
-  Node *cur = this;
-  Node *prev = nullptr;
+  Node<T> *cur = this;
+  Node<T> *prev = nullptr;
   for (int i = 0; i < n && cur->next != nullptr; ++i)
   {
     prev = cur;
@@ -63,7 +110,7 @@ Node* Node::RotateLinkedList(const int n)
 
   prev->next = nullptr;
 
-  Node *end = cur;
+  Node<T> *end = cur;
   while (end->next != nullptr)
     end = end->next;
 
@@ -72,24 +119,108 @@ Node* Node::RotateLinkedList(const int n)
   return cur;
 }
 
-void ReverseLinkedList(Node** node)
-{
-  Node* prevNode = nullptr;
-  Node* curNode = *node;
-  Node* nextNode = curNode->next;
+// -------------------------------------------
+// Reverse Nodes
+// -------------------------------------------
 
-  while (curNode != nullptr)
+template <typename T>
+void ReverseLinkedListIterative(Node<T>** node)
+{
+  Node<T>* prev = nullptr;
+  Node<T>* cur = *node;
+  Node<T>* rest = cur->next;
+
+  while(cur != nullptr)
   {
-    nextNode = curNode->next;
-    curNode->next = prevNode;
-    prevNode = curNode;
-    curNode = nextNode;
+    rest = cur->next;
+    cur->next = prev;
+    prev = cur;
+    cur = rest;
   }
 
-  *node = prevNode;
+  *node = prev;
 }
 
-void ReverseLinkedListRecusively(Node** node)
+
+template <typename T>
+void ReverseLinkedListRecusively(Node<T>** node)
 {
+  Node<T>* first = *node;
+  Node<T>* rest = first->next;
 
+  if (rest == nullptr)
+    return;
+
+  ReverseLinkedListRecusively(&rest);
+
+  first->next->next = first;
+  first->next = nullptr;
+
+  *node = rest;
 }
+
+template <typename T>
+void ReverseLinkedList(Node<T>* node)
+{
+  Node<T>* prev = nullptr;
+  Node<T>* cur = node;
+  Node<T>* rest = node->next;
+
+  while(cur != nullptr)
+  {
+    rest = cur->next;
+    cur->next = prev;
+    prev = cur;
+    cur = rest;
+  }
+
+  node = prev;
+}
+
+template <typename T>
+void ReverseLinkedListTailRecursion(Node<T>** node)
+{
+  if (node == nullptr || *node == nullptr)
+    return;
+
+  ReverseLinkedListTailRecursionUtility(*node, nullptr, node);
+}
+
+template <typename T>
+void ReverseLinkedListTailRecursionUtility(Node<T>* cur, Node<T>* before, Node<T>** head)
+{
+}
+
+// -------------------------------------------
+// Delete Nodes
+// -------------------------------------------
+
+template <typename T>
+void DeleteNodeIterative(Node<T>** node, int n)
+{
+  Node<T>* cur = *node;
+
+  if (n == 0)
+  {
+    *node = cur->next;
+    delete cur;
+    return;
+  }
+
+  Node<T>* before = nullptr;
+
+  for (int i = 0; i < n; ++i)
+  {
+    if (cur == nullptr)
+      return;
+
+    before = cur;
+    cur = cur->next;
+  }
+
+  before->next = cur->next;
+  delete cur;
+}
+*/
+
+
