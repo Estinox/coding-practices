@@ -1,4 +1,10 @@
-*.exe*
-**/.DS_Store
+# Executables
 *.o*
+*.exe*
+
+# Dumps
+*vim.exe.stackdump
+
+# Directories
+**/.DS_Store
 *.ipynb_checkpoints
