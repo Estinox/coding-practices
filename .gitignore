@@ -1,3 +1,4 @@
 *.exe*
 **/.DS_Store
 *.o*
+*.ipynb_checkpoints
