@@ -5,6 +5,11 @@
 # Dumps
 *vim.exe.stackdump
 
+# Outputs
+*.html
+*.png
+*.csv
+
 # Directories
 **/.DS_Store
 *.ipynb_checkpoints

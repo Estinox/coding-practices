@@ -59,12 +59,14 @@ Base Base::Increment()
 
 int main ()
 {
-  Base b = Base(1);
-  Base* b_pointer = &b;
+  Base b;
 
-  b = Base(2);
-
-  printf("%d %d\n", b_pointer->v, b.v);
+//  Base b = Base(1);
+//  Base* b_pointer = &b;
+//
+//  b = Base(2);
+//
+//  printf("%d %d\n", b_pointer->v, b.v);
 
   return 0;
 }

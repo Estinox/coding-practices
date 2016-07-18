@@ -1,5 +1,3 @@
-
-# Kevin Yuan's makefile for Ginkgo
 # August 17th, 2015
 
 # $V=DEV for debugging
