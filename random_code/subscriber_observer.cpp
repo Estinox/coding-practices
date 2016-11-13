@@ -19,18 +19,22 @@ template <typename... Args> class Signal {
     std::vector<fp> subscribers_;
 };
 
-void worker(int id)
+void multiply(int a, int b)
 {
-  std::cout << "worker handling id " << id << std::endl;
+  std::cout << a << " times " << b  << " is " << a*b << std::endl;
+}
+
+void subtract(int a, int b)
+{
+  std::cout << a << " minus " << b << " is " << a-b << std::endl;
 }
 
 
 int main() {
-  auto signal = Signal<int>();
+  auto signal = Signal<int, int>();
 
-  Worker w{1};
-
-  signal.subscribe(&worker);
-  signal.notify(5);
-  signal.notify(8);
+  signal.subscribe(&multiply);
+  signal.subscribe(&subtract);
+  signal.notify(3,1);
+  signal.notify(8,2);
 }
