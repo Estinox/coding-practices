@@ -14,7 +14,7 @@ public:
 
 template <typename T>
 Node<T>::Node(T d)
-  : data(d)
+  : data(std::move(d))
   , next(nullptr)
 {}
 
